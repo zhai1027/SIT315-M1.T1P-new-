@@ -1,0 +1,35 @@
+//References:
+//https://create.arduino.cc/projecthub/biharilifehacker/arduino-with-pir-motion-sensor-fd540a
+//https://create.arduino.cc/projecthub/rowan07/make-a-simple-led-circuit-ce8308
+int PIR_SENSOR = 2;
+int LED = A0;
+int PIR_status = 0;
+
+void setup() {
+pinMode(LED, OUTPUT);
+pinMode(PIR_SENSOR, INPUT);
+Serial.begin(9600);
+}
+
+void loop(){
+  PIR_status = digitalRead(PIR_SENSOR);//Read sensor value
+  
+  if (PIR_status == HIGH) 
+  {           
+    // check if the sensor is HIGH
+    digitalWrite(LED, HIGH);   // Turn LED ON
+    Serial.println("LED is ON");
+    delay(2000);                // Delay 2s.    
+  }
+  else if (PIR_status == LOW) 
+  {
+    // check if the sensor is LOW
+    digitalWrite(LED, LOW);   // Turn LED OFF
+    Serial.println("LED is OFF");
+    delay(2000); 			  // Delay 2s    
+  }
+  else
+  {
+    Serial.println("No motion detected");
+  }
+}
